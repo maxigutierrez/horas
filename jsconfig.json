@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["./components"],
+      "styles": ["./styles"],
+      "pages": ["./pages"],
+      "constants": ["./constants"],
+      "actions": ["./actions"],
+      "reducers": ["./reducers"],
+      "store": ["./store"],
+      "hooks": ["./hooks"],
+      "config": ["./config"],
+      "api": ["./api"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
