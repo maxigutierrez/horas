@@ -15,8 +15,12 @@ export default function HorasPage() {
   }, [extraHoursData]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Registro de Horas Extras</h1>
+    <div style={{ padding: "15px" }}>
+      <h1
+        className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-600 to-purple-600 mb-6"
+      >
+        Registro de Horas Extras
+      </h1>
       <div style={{ overflowX: "auto", maxHeight: "500px", overflowY: "auto" }}>
         <Table
           aria-label="Tabla de registro de horas extras jerarquizadas por sistema y menú"
