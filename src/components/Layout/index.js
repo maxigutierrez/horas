@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
 import { useTheme } from "next-themes";
-import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/outline"; // Icono de hamburguesa
+import { SunIcon, MoonIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { FaClock, FaTachometerAlt, FaFileAlt, FaCogs } from "react-icons/fa";
 
 export const AcmeLogo = () => {
   return (
@@ -17,46 +18,54 @@ export const AcmeLogo = () => {
 };
 
 export default function Layout({ children }) {
-  const { setTheme, theme } = useTheme();
-  const [sidebarOpen, setSidebarOpen] = useState(true); // Estado para mostrar/ocultar el sidebar
+  const { setTheme, theme } = useTheme('light');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen); // Alterna la visibilidad del sidebar
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`fixed inset-0 z-30 bg-gray-800 bg-opacity-75 lg:bg-transparent lg:block lg:w-60 transition-transform duration-300 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed inset-0 z-30 bg-gray-900 text-white lg:block lg:w-60 transition-transform duration-300 transform ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
-        <div className="w-60 h-full bg-gray-800 text-white p-4">
-          <div className="mb-6">
-            <AcmeLogo />
-            <p className="font-bold text-xl">HORAS</p>
-          </div>
+        <div className="w-60 h-full bg-gray-900 p-4">
+          {sidebarOpen && (
+            <div className="mb-6 flex items-center gap-2">
+              <AcmeLogo />
+              <p className="font-bold text-xl">HORAS</p>
+            </div>
+          )}
           <nav>
             <ul className="space-y-4">
-              <li>
+              <li className="flex items-center gap-3 hover:bg-gray-700 p-2 rounded-md">
+                <FaClock className="text-lg" />
                 <Link href="#" className="text-gray-300 hover:text-white">
                   Horas
                 </Link>
               </li>
-              <li>
+              <li className="flex items-center gap-3 hover:bg-gray-700 p-2 rounded-md">
+                <FaTachometerAlt className="text-lg" />
                 <Link href="#" className="text-gray-300 hover:text-white">
                   Dashboard
                 </Link>
               </li>
-              <li>
+              <li className="flex items-center gap-3 hover:bg-gray-700 p-2 rounded-md">
+                <FaFileAlt className="text-lg" />
                 <Link href="#" className="text-gray-300 hover:text-white">
                   Reportes
                 </Link>
               </li>
-              <li>
+              <li className="flex items-center gap-3 hover:bg-gray-700 p-2 rounded-md">
+                <FaCogs className="text-lg" />
                 <Link href="#" className="text-gray-300 hover:text-white">
                   Configuración
                 </Link>
@@ -67,25 +76,24 @@ export default function Layout({ children }) {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-60' : 'ml-0'}`}>
-        {/* Navbar with Hamburger for mobile */}
+      <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? "ml-60" : "ml-0"}`}>
+        {/* Navbar */}
         <Navbar isBordered>
           <div className="flex items-center gap-4">
-            {/* Button to open sidebar */}
+            {/* Hamburger button */}
             <NavbarItem>
-              <Button
-                onClick={toggleSidebar} // Abre o cierra el sidebar
-                auto
-                flat
-              >
+              <Button onClick={toggleSidebar} auto flat>
                 <Bars3Icon className="h-6 w-6 text-gray-800" />
               </Button>
             </NavbarItem>
 
-            <NavbarBrand>
-              <AcmeLogo />
-              <p className="font-bold text-inherit ml-2">HORAS</p>
-            </NavbarBrand>
+            {/* Logo (conditionally displayed) */}
+            {!sidebarOpen && (
+              <NavbarBrand>
+                <AcmeLogo />
+                <p className="font-bold text-inherit ml-2">HORAS</p>
+              </NavbarBrand>
+            )}
           </div>
 
           <NavbarContent justify="end" className="flex items-center gap-4">

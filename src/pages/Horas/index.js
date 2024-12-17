@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { extraHoursData } from "./data";
 
 export default function HorasPage() {
-  // Calcular el total de horas dedicadas
   const totalHoras = useMemo(() => {
     return extraHoursData.reduce((total, sistema) => {
       return total + sistema.tareas.reduce((tareaTotal, tarea) => {
@@ -17,11 +16,11 @@ export default function HorasPage() {
   return (
     <div style={{ padding: "15px" }}>
       <h1
-        className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-600 to-purple-600 mb-6"
+        className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-pink-600 to-purple-600 mb-6"
       >
         Registro de Horas Extras
       </h1>
-      <div style={{ overflowX: "auto", maxHeight: "500px", overflowY: "auto" }}>
+      <div style={{ overflowX: "auto", maxHeight: "430px", overflowY: "auto" }}>
         <Table
           aria-label="Tabla de registro de horas extras jerarquizadas por sistema y menú"
           removeWrapper
@@ -56,9 +55,9 @@ export default function HorasPage() {
           </TableBody>
         </Table>
       </div>
-      <div style={{ marginTop: "20px", fontWeight: "bold" }}>
+      <div style={{ marginTop: "20px", fontWeight: "bold", textAlign: "right" }}>
         Total de horas dedicadas: {totalHoras}
       </div>
     </div>
   );
-}
+};
